@@ -1,0 +1,153 @@
+﻿@model IEnumerable<AppUser>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- App Area -->
+<!-- Main Area -->
+<div id="mainArea" class="row-fluid">
+    <!-- Side Bar -->
+    <div class="span3">
+        <!-- In Call Actions -->
+        <div id="incallAction" class="card uppercard card-body bg-light actions" style="height: 60vh; width: 88vw;display: none;">
+            <div id="callstatus" class="status">Idle</div>
+
+            <!-- Callee Image-->
+            <div id="call-animation" class="parent">
+                <img id="callee-image" class="user-image" />
+                @*
+                    <div class="mic-over-user-image">
+                        <input type='checkbox' id="micsetting" />
+                        <label for="micsetting" class="muteonoff"></label>
+                    </div>
+                *@
+            </div>
+
+            <br />
+            @*<button class="btn btn-danger hangup">Call End</button>*@
+        </div>
+
+        <!-- User List -->
+        <div id="userList" class="card card-body bg-light user-list">
+            @*<button id="beep2" class="btn btn-danger" style="max-width:200px;display:inline-block;margin:0 auto;padding-bottom:9px;" onclick="beep2()">Test Incoming Ringtone</button>*@
+
+            @*<div class="row" style="margin-bottom:.5rem;margin-left:.5rem;">
+            <label for="status" style="margin-bottom: auto;">Status : </label>
+            <select name="status" id="status" style="margin-left: .5rem; max-width: 300px;">
+                <option value="0">Available</option>
+                <option value="1">Busy</option>
+                <option value="2">Idle</option>
+                <option value="3">Offline</option>
+            </select>
+        </div>*@
+
+            <!--<ul id="usersdata" class="list-group">
+        <li class="list-group-item" style="background-color: #daeeed;">All Users <small id="allUsersLength"></small></li>
+        <li class="list-group-item" style="background-color: #eeeee4;">Online Users <small id="usersLength"></small></li>
+    </ul>-->
+            <!-- foreach: Users -->
+            <!--<div id="allusers"></div>-->
+
+            <div id="availabletitle" class="active-status-title" style="margin-top: 0rem;">Available <small id="availableUsersLength"></small></div>
+            <div id="availableusers"></div>
+
+            <div id="busytitle" class="active-status-title">Busy <small id="busyUsersLength"></small></div>
+            <div id="busyusers"></div>
+
+            @*<div id="idletitle" class="active-status-title">Idle <small id="idleUsersLength"></small></div>
+        <div id="idleusers"></div>*@
+
+            <div id="offlinetitle" class="active-status-title">Offline <small id="offlineUsersLength"></small></div>
+            <div id="offlineusers"></div>
+        </div>
+        <div id="endcall-footer" class="card lowercard card-body bg-light conn-type" style="width: 88vw; display: none; ">
+            <div id="endcall-container">
+                <a href="#" onclick="event.preventDefault();">
+                    <img class="plus">
+                </a>
+                <a id="button" href="#" style="display:none;">
+                    <span class="button-play"><img class="play"></span>
+                    <span class="button-pause"><img class="pause"></span>
+                </a>
+                <button id="refreshaudio" style="display:none;"></button>
+
+                <div>
+                    <input type='checkbox' id="micsetting" />
+                    <label for="micsetting" class="muteonoff"></label>
+                </div>
+
+                <a href="#" onclick="callEnd();event.preventDefault();">
+                    <img class="callend">
+                </a>
+            </div>
+            @*<button type="button" class="btn btn-dark">Connection Type <span class="badge badge-secondary">Audio</span></button>*@
+        </div>
+    </div>
+
+    @*<div class="audio-container">
+        </div>*@
+    @*<audio id="calling" controls>
+        <source src="../audio/Calling_16bit48kHz_210225.wav" type="audio/wav">
+    </audio>
+
+    <audio id="incoming" controls>
+        <source src="../audio/IncomingCall_16bit48kHz_210225.wav" type="audio/wav">
+        <source src="../audio/dragon.ogg" type="audio/ogg">
+        <source src="../audio/dragon.mp3" type="audio/mpeg">
+    </audio>*@
+
+    @*<button id="beep1" onclick="beep1()">beep1</button>*@ 
+    @*<br />*@
+    @*<button id="beep2" onclick="beep2()">Incoming Ringtone</button>*@ 
+
+    <!-- Videos -->
+    <div class="span9" style="display: none;">
+        <div class="row-fluid">
+            @*<div class="span6">
+                    <h4>You</h4>
+                    <video class="video mine cool-background" autoplay="autoplay"></video>
+                </div>*@
+            <div class="span6">
+                <h4>Partner</h4>
+                <audio id="audio" class="audio partner" autoplay="" controls=""></audio>
+                @*<video class="video partner cool-background" autoplay="autoplay"></video>*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- My Info Detail Area -->
+<div id="myinfoArea" style="display:none">
+</div>
+
+<!-- Privacy Area -->
+<div id="privacyArea" style="display:none">
+    <h1>Privacy Policy</h1>
+    <p>Use this page to detail your site's privacy policy.</p>
+</div>
+
+@section Scripts{
+    <link href="~/lib/icomoon/style.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/lib/alertifyjs/build/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/lib/alertifyjs/build/css/themes/default.min.css" rel="stylesheet" />
+
+    <link href="~/css/custom.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/customtoggle.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/customaudio.css" rel="stylesheet" />
+
+    <script src="~/lib/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
+    <script src="~/lib/alertifyjs/build/alertify.min.js" asp-append-version="true"></script>
+    <script src="~/lib/adapter/adapter.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/Tone.js" asp-append-version="true"></script>
+    @*<script src="~/lib/tone/build/Tone.js" asp-append-version="true"></script>*@
+    <script src="~/js/audioConstants.js" asp-append-version="true"></script>
+
+    <script src="~/js/utilsRTC.js" asp-append-version="true"></script>
+    <script src="~/js/constWebRTC.js" asp-append-version="true"></script>
+    <script src="~/js/connectionHub.js" asp-append-version="true"></script>
+    <script src="~/js/ajaxAuthorizedMethod.js" asp-append-version="true"></script>
+}

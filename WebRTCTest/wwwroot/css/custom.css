@@ -1,0 +1,386 @@
+﻿/* loading indicator */
+/* yep, I know it is off-center, but I dont want to figure out the right origin */
+@-moz-keyframes rotation {
+    from {
+        -moz-transform: rotate(0deg);
+        -moz-transform-origin: 85% 90%;
+    }
+
+    to {
+        -moz-transform: rotate(359deg);
+        -moz-transform-origin: 85% 90%;
+    }
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+        -webkit-transform-origin: 85% 90%;
+    }
+
+    to {
+        -webkit-transform: rotate(359deg);
+        -webkit-transform-origin: 85% 90%;
+    }
+}
+
+[class*=" icon-"].loading-indicator {
+    float: left;
+    display: none;
+    font-size: 24px;
+    margin: 7px !important;
+    color: #EC173A;
+}
+
+    [class*=" icon-"].loading-indicator.on {
+        display: block;
+        -webkit-animation: rotation 1.5s infinite linear;
+        -moz-animation: rotation 1.5s infinite linear;
+    }
+
+/* browser alert */
+.browser-warning {
+    display: none;
+}
+
+/* user List*/
+.user-list {
+    padding: 9px 0;
+}
+
+.user .icon-phone-4 {
+    display: none;
+}
+
+.user:hover .icon-phone-4 {
+    display: inline-block;
+}
+
+.user a {
+    position: relative;
+    overflow: hidden;
+}
+
+.user .username {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 16px;
+    padding-left:20px;
+}
+
+.user .helper {
+    position: absolute;
+    left : 0px;
+    right: 10px;
+    top: 5px;
+}
+
+@-moz-document url-prefix() {
+    .user .helper {
+        position: absolute;
+        left: 0px;
+        right: 10px;
+        top: 22px;
+    }
+}
+
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+
+        .user .helper {
+            position: absolute;
+            left: 0px;
+            top: -18px;
+            bottom:0px;
+        }
+    }
+}
+
+/* in call actions */
+.actions {
+    display: none;
+}
+
+[data-mode='incall'] .actions,
+[data-mode='calling'] .actions {
+    display: block;
+}
+
+.actions .hangup {
+    width: 100%;
+}
+
+.actions .status {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* video windows */
+.video {
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+}
+
+.cool-background {
+    background: linear-gradient(135deg, #ECEDDC 25%, transparent 25%) -50px 0, linear-gradient(225deg, #ECEDDC 25%, transparent 25%) -50px 0, linear-gradient(315deg, #ECEDDC 25%, transparent 25%), linear-gradient(45deg, #ECEDDC 25%, transparent 25%);
+    background-size: 100px 100px;
+    background-color: #EC173A;
+}
+
+/* alertify styles */
+.alertify-cover {
+    background: rgba(0,0,0,.8);
+}
+
+input[type='text'] {
+    padding: 10px !important;
+    height: auto !important;
+}
+
+.image-profile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 10px 40px 10px;
+    /*padding-bottom: 40px;*/
+}
+
+div.image-text {
+    position: absolute;
+    left : 0px;
+    /*right: 10px;*/
+    /*top: 100px;*/
+    bottom: 15px;
+    text-align: center;
+    width: 100%;
+    /*display: block;*/
+    white-space: nowrap;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    /*line-clamp: 3;*/
+}
+
+div.image-status {
+    position: absolute;
+    left: 0px;
+    /*top: 120px;*/
+    bottom: -5px;
+    text-align: center;
+    width: 100%;
+}
+
+img.image-list {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+img.user-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+}
+
+.parent {
+    position: relative;
+}
+
+.mic-over-user-image {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+#call-animation {
+    background: #fff;
+    width: 92px;
+    height: 92px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 100%;
+    border: solid 1px #fff;
+}
+
+.call-animation {
+    animation: play 1s ease infinite;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    /*-ms-backface-visibility: hidden;*/
+    backface-visibility: hidden;
+}
+
+@keyframes play {
+
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        box-shadow: 0 0 0 5px rgba(26, 188, 156, 0.4);
+    }
+
+    25% {
+        box-shadow: 0 0 0 10px rgba(26, 188, 156, 0.4), 0 0 0 20px rgba(26, 188, 156, 0.2);
+    }
+
+    25% {
+        box-shadow: 0 0 0 15px rgba(26, 188, 156, 0.4), 0 0 0 30px rgba(26, 188, 156, 0.2);
+    }
+}
+
+#endcall-container {
+    display: flex; /* establish flex container */
+    flex-direction: row; /* default value; can be omitted */
+    flex-wrap: nowrap; /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
+    /*background-color: lightyellow;*/
+    align-items: center;
+}
+
+#incallAction > .set-bottom {
+    position: absolute;
+    top:100px;
+}
+
+/*
+#endcall-container > a > .endcall{
+    width: 50px;
+    height: 50px;
+    //border: 2px dashed red;
+    border-radius: 50%;
+    //margin: 0 auto;
+    text-align: center;
+    position: relative;
+    background-color: red;
+}
+*/
+
+#endcall-container > a > img.plus {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url('../images/Plus.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border: 1px solid black;
+}
+
+#endcall-container > a > span >.play {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url('../images/Mute.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    border: 1px solid black;
+}
+
+#endcall-container > a > span > .pause {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url('../images/Volume.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    border: 1px solid black;
+}
+
+#endcall-container > a > img.callend {
+    width: 42px;
+    height: 42px;
+    border: 1px solid black;
+    border-radius: 50%;
+    /*content: url('../images/CallEnd.png');*/
+    background-color: red;
+    background-image: url('../images/SignOut.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    /*
+    -webkit-box-shadow:inset 0px 0px 0px 10px #f00;
+    -moz-box-shadow:inset 0px 0px 0px 10px #f00;
+    box-shadow:inset 0px 0px 0px 10px #f00;
+    */
+}
+
+#endcall-container > a > .muteonoff, #endcall-container > div > .muteonoff, #call-animation > div > .muteonoff {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    /*
+    text-align: center;
+    position: relative;
+    */
+    border: 1px solid black;
+}
+
+/*for only svg test*/
+.child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.uppercard {
+    border-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.lowercard {
+    border-top: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.ellipse {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.available {
+    background-color: green;
+}
+.busy {
+    background-color: red;
+}
+.idle {
+    background-color: orange;
+}
+.offline {
+    background-color: darkgrey;
+}
+
+.active-status-title{
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
+/*.mb-3, .my-3 {*/
+.nav-bottom {
+     margin-bottom: 0rem!important; 
+}

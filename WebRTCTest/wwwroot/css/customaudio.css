@@ -1,0 +1,19 @@
+﻿#button, #refreshaudio {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+.button-pause {
+    display: none;
+}
+
+.is-playing .button-pause {
+    display: inline-block;
+}
+
+.button-play {
+    display: inline-block;
+}
+
+.is-playing .button-play {
+    display: none;
+}
