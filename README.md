@@ -11,7 +11,8 @@
    ngrok.exe http https://localhost:44372 --host-header=localhost:44372
    
    if require to add token, first you should set the following command.
-       ngrok authtoken yourtoken
+   
+   ngrok authtoken yourtoken
 
 4. Add your host into client id for web application(Google Cloud Platform - Credentials) as follows:
     
