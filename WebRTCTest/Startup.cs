@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 
 namespace WebRTCTest
 {
@@ -27,8 +28,27 @@ namespace WebRTCTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // MsSQLExpress Setting
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+            // SQLite Setting
+            string DEFAULTDBFILE = "WebRTCTest.sqlite";
+            string DB_PASSWORD = "WebRTCTest";
+            //services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Singleton);
+            services.AddDbContext<ApplicationDbContext>(optionsBuilder =>
+            {
+                var conn = new SqliteConnection($"Data Source={DEFAULTDBFILE};");
+                conn.Open();
+
+                using (var command = conn.CreateCommand())
+                {
+                    command.CommandText = $"PRAGMA key = '{DB_PASSWORD}';";
+                    command.ExecuteNonQuery();
+                }
+                optionsBuilder.UseSqlite(conn);
+            }, ServiceLifetime.Singleton);
+
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
@@ -37,12 +57,10 @@ namespace WebRTCTest
                 //.AddCookie()
                 .AddGoogle(opts =>
                 {
-                    //Private
+                    // Google Credentials Setting
                     opts.ClientId = "664960591237-mb8ma4p6niac6te8q0usj6289h0e53qp.apps.googleusercontent.com";
                     opts.ClientSecret = "nlZi6ZdURFYl5AAuF5X1Ocfe";
-                    ////Woven
-                    //opts.ClientId = "662123173475-qfjpdvqrkfhog2pqubk0e9tg8mr44eik.apps.googleusercontent.com";
-                    //opts.ClientSecret = "ozS-4Hi6GOs_JTtdJ3fU_j7d";
+
                     opts.SignInScheme = IdentityConstants.ExternalScheme;
                     opts.Scope.Add("profile");
                     //opts.Events.OnCreatingTicket = (context) =>
@@ -87,7 +105,7 @@ namespace WebRTCTest
 
                 app.Use(async (context, next) =>
                 {
-                    string newUri = "7797-2400-2412-e02-6100-71aa-9a63-315c-3215.ngrok.io";
+                    string newUri = "5b55-2400-2412-e02-6100-1d97-5d95-7a56-dc4.ngrok.io";
                     var url = context.Request.Path.Value;
 
                     // Rewrite to base url

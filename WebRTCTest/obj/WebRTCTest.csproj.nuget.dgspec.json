@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tezas\\source\\repos\\WebRTCTest\\WebRTCTest\\WebRTCTest.csproj": {}
+    "C:\\Users\\HumanR0006\\source\\repos\\WebRTC\\WebRTCTest\\WebRTCTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tezas\\source\\repos\\WebRTCTest\\WebRTCTest\\WebRTCTest.csproj": {
+    "C:\\Users\\HumanR0006\\source\\repos\\WebRTC\\WebRTCTest\\WebRTCTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tezas\\source\\repos\\WebRTCTest\\WebRTCTest\\WebRTCTest.csproj",
+        "projectUniqueName": "C:\\Users\\HumanR0006\\source\\repos\\WebRTC\\WebRTCTest\\WebRTCTest.csproj",
         "projectName": "WebRTCTest",
-        "projectPath": "C:\\Users\\tezas\\source\\repos\\WebRTCTest\\WebRTCTest\\WebRTCTest.csproj",
-        "packagesPath": "C:\\Users\\tezas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tezas\\source\\repos\\WebRTCTest\\WebRTCTest\\obj\\",
+        "projectPath": "C:\\Users\\HumanR0006\\source\\repos\\WebRTC\\WebRTCTest\\WebRTCTest.csproj",
+        "packagesPath": "C:\\Users\\HumanR0006\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HumanR0006\\source\\repos\\WebRTC\\WebRTCTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tezas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HumanR0006\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -66,11 +67,19 @@
               "target": "Package",
               "version": "[3.1.25, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.25, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.25, )"
+            },
+            "SQLitePCLRaw.bundle_e_sqlcipher": {
+              "target": "Package",
+              "version": "[2.1.0, )"
             }
           },
           "imports": [
